@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import cv2
 
@@ -24,12 +25,29 @@ def get_dimension(cap, resolution='1080p'):
 	change_resolution(cap, width, height)
 	return width, height
 
+
+#wymagane doinstalowanie kodeków pod konkretny typ video
+video_type = {
+	'avi' : cv2.VideoWriter_fourcc(*'XVID'),
+	'mp4' : cv2.VideoWriter_fourcc(*'XVID'),	
+}
+
+def get_video_type(filename):
+	filename, ext = os.path.splitext(filename)
+	if ext in video_type:
+		return video_type[ext]
+	return video_type['mp4']
+
 cap = cv2.VideoCapture(0)
 dimension = get_dimension(cap, resolution=initial_resolution)
+video_type_cv2 = get_video_type(filename)
+
+out = cv2.VideoWriter(filename, video_type_cv2, frames_per_seconds, dimension)
+
 while(True):
 
 	ret, frame = cap.read()
-
+	out.write(frame)
 
 	cv2.imshow('frame', frame)
 	if cv2.waitKey(20) & 0xFF == ord('q'): #nacisnij q zeby zatrzymac nagrywanie
@@ -37,4 +55,5 @@ while(True):
 
 
 cap.release()
+out.release()
 cv2.destroyAllWindows()
