@@ -14,6 +14,7 @@ while(True):
 	for (x, y, w, h) in faces:
 		print(x,y,w,h)
 		roi_gray = gray[y:y+h, x:x+w] #region of interest
+		roi_color = frame[y:y+h, x:x+w]
 		img_item = "my_image.png"
 		cv2.imwrite(img_item, roi_gray)
 	cv2.imshow('frame',frame)
