@@ -17,6 +17,12 @@ while(True):
 		roi_color = frame[y:y+h, x:x+w]
 		img_item = "my_image.png"
 		cv2.imwrite(img_item, roi_gray)
+		#narysowanie prostokątu
+		color = (255, 0, 0) #model BGR nie RGB; niebieski - zielony - czerwony; w zakresie od 0 do 255 -> niebieski prostokąt
+		stroke = 1 #grubosc linii
+		end_cord_x = x + w 
+		end_cord_y = y + h 
+		cv2.rectangle(frame, (x, y), (end_cord_x, end_cord_y), color, stroke) #okreslenie wspolrzednych prostokatu; x,y - start; 
 	cv2.imshow('frame',frame)
 	if cv2.waitKey(20) & 0xFF == ord('q'):
 		break
