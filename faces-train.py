@@ -1,4 +1,6 @@
 import os
+import numpy as np
+from PIL import Image
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 image_dir = os.path.join(BASE_DIR, "images")
@@ -14,3 +16,7 @@ for root, dirs, files in os.walk(image_dir):
 			print(label, path)
 			#y_labels.append(label)
 			#x_train.append(path)
+			#zamiana zdjec na postac liczbowa
+			pil_image = Image.open(path).convert("L") #skala szarosci
+			image_array = np.array(pil_image, "uint8")
+			print(image_array)
