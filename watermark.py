@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-from utils import CFEVideoConf
+from utils import CFEVideoConf, image_resize
 
 cap = cv2.VideoCapture(0)
 
@@ -11,7 +11,8 @@ out = cv2.VideoWriter(save_path, config.video_type, frames_per_seconds, config.d
 
 img_path = "C:\\Users\\ADMIN\\projects\\OpenCV-Python/cfe-coffee.jpg" #cala sciezka + podwojne ukosniki
 logo = cv2.imread(img_path, -1) # -1 -> get raw file
-cv2.imshow('logo', logo)
+watermark = image_resize(logo, height=50)
+cv2.imshow('watermark', watermark)
 
 while(True):
 	ret, frame = cap.read()
