@@ -3,14 +3,15 @@ import cv2
 from utils import CFEVideoConf
 
 cap = cv2.VideoCapture(0)
+
 save_path = 'saved-media/watermark.mp4'
 frames_per_seconds = 24 # taka wartosc moze nie dzialac
 config = CFEVideoConf(cap, filepath=save_path, res='720p') # 720p w zaleznosci od kamery
 out = cv2.VideoWriter(save_path, config.video_type, frames_per_seconds, config.dims)
 
-img_path = 'OpenCV-Python/logo.jpg'
-watermark = cv2.imread(img_path, -1) # -1 -> get raw file
-cv2.imshow('watermark', watermark)
+img_path = "C:\\Users\\ADMIN\\projects\\OpenCV-Python/cfe-coffee.jpg" #cala sciezka + podwojne ukosniki
+logo = cv2.imread(img_path, -1) # -1 -> get raw file
+cv2.imshow('logo', logo)
 
 while(True):
 	ret, frame = cap.read()
