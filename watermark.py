@@ -16,7 +16,29 @@ cv2.imshow('watermark', watermark)
 
 while(True):
 	ret, frame = cap.read()
-	out.write(frame)
+
+	# print(frame[50, 150])
+	# start_cord_x = 50
+	# start_cord_y = 150
+	# color = (255, 0, 0) 
+	# stroke = 1 
+	# w = 100
+	# h = 200
+	# end_cord_x = start_cord_x + w 
+	# end_cord_y = start_cord_y + h 
+	# cv2.rectangle(frame, (start_cord_x, start_cord_y), (end_cord_x, end_cord_y), color, stroke)
+	# print(frame[start_cord_x:end_cord_x, start_cord_y:end_cord_y])
+
+	frame_h, frame_w, frame_s = frame.shape
+	print(frame.shape) #okreslenie wymiarow
+	gray = cv2.cvtColor(frame.copy(), cv2.COLOR_BGR2GRAY)
+	print(gray.shape)
+	#stworzenie pokrycia z 4 kanałami - BGR i alfa -> przejrzystosc
+	overlay = np.zeros
+
+
+
+	#out.write(frame)
 	cv2.imshow('frame', frame)
 	if cv2.waitKey(20) & 0xFF == ord('q'): #nacisnij q zeby zatrzymac nagrywanie
 		break
