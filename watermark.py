@@ -9,10 +9,10 @@ frames_per_seconds = 24 # taka wartosc moze nie dzialac
 config = CFEVideoConf(cap, filepath=save_path, res='720p') # 720p w zaleznosci od kamery
 out = cv2.VideoWriter(save_path, config.video_type, frames_per_seconds, config.dims)
 
-img_path = "C:\\Users\\Maciek\\projects\\OpenCV-Python\\cfe-coffee.png" #komputer
+img_path = "C:\\Users\\Maciek\\projects\\OpenCV-Python\\watka.png" #komputer
 #img_path = "C:\\Users\\ADMIN\\projects\\OpenCV-Python\\cfe-coffee.jpg" #laptop
 logo = cv2.imread(img_path, -1) # -1 -> get raw file
-watermark = image_resize(logo, height=50)
+watermark = image_resize(logo, height=100)
 watermark = cv2.cvtColor(watermark, cv2.COLOR_BGR2BGRA)
 #cv2.imshow('watermark', watermark)
 #print(watermark.shape)
@@ -55,7 +55,7 @@ while(True):
 
 
 
-	cv2.addWeighted(overlay, 0.25, frame, 1.0, 0, frame)
+	cv2.addWeighted(overlay, 0.5, frame, 1.0, 0, frame)
 
 	frame = cv2.cvtColor(frame, cv2.COLOR_BGRA2BGR)
 	out.write(frame)
