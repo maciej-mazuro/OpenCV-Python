@@ -13,9 +13,10 @@ out = cv2.VideoWriter(save_path, config.video_type, frames_per_seconds, config.d
 user_name = os.getenv("USERNAME")
 if user_name == 'Maciek':
 	img_path = "C:\\Users\\Maciek\\projects\\OpenCV-Python\\watka.png"
-else:
-	img_path = "C:\\Users\\ADMIN\\projects\\OpenCV-Python\\watka.jpg"
+elif user_name == 'ADMIN':
+	img_path = "C:\\Users\\ADMIN\\projects\\OpenCV-Python\\netflix.png"
 logo = cv2.imread(img_path, -1) # -1 -> get raw file
+
 watermark = image_resize(logo, height=100)
 watermark = cv2.cvtColor(watermark, cv2.COLOR_BGR2BGRA)
 #cv2.imshow('watermark', watermark)
@@ -59,7 +60,7 @@ while(True):
 
 
 
-	cv2.addWeighted(overlay, 0.5, frame, 1.0, 0, frame)
+	cv2.addWeighted(overlay, 0.75, frame, 1.0, 0, frame)
 
 	frame = cv2.cvtColor(frame, cv2.COLOR_BGRA2BGR)
 	out.write(frame)
